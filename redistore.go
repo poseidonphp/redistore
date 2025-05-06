@@ -403,7 +403,7 @@ func (s *RediStore) save(session *sessions.Session) error {
 func (s *RediStore) load(session *sessions.Session) (bool, error) {
 	data, err := s.Client.Get(context.Background(), s.keyPrefix+session.ID).Result()
 
-	if err != nil {
+	if err != nil && !errors.Is(err, redis.Nil) {
 		return false, err
 	}
 	if data == "" {
