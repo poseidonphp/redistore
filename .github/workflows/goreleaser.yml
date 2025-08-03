@@ -1,4 +1,4 @@
-name: Goreleaser
+name: Go Releaser
 
 on:
   push:
